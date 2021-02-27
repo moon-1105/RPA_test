@@ -1,3 +1,4 @@
+//결국 이렇게 처리하지는 않을 것.
 package input_test;
 
 import java.io.FileInputStream;
