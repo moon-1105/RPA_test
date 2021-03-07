@@ -3,10 +3,13 @@
  */
 var result = "";
 var JsonRes = null;
+
 function excelHandl(event){
+	// event를 실행하고 완료되면, makeJson을 함.
     excelHandlJson(event, makeJson);	
 }
 function excelHandlJson(event, callback){
+	//실질적으로 엑셀을 읽어오는 부분 
     var input = event.target;
     var reader = new FileReader();
     reader.onload = function(){
@@ -18,23 +21,23 @@ function excelHandlJson(event, callback){
         callback(firstSheet);   
     };
     reader.readAsBinaryString(input.files[0]);
-} 
-//이렇게 콜백 처리를 함으로써 콜이 완료된 후에 처리되도록 제어가 가능해진다. 
-
+}
 function makeJson(sheet){
+	//앞서 엑셀을 읽은 후 json 변환 하여
 	JsonRes = XLSX.utils.sheet_to_json(sheet);
 	//console.log( JSON.stringify(XLSX.utils.sheet_to_json (sheet)) );
 	console.log(JsonRes);
 	console.log(Object.keys(JsonRes).length);
 	var cnt = Object.keys(JsonRes).length ;
 	console.log(JsonRes[0]);
+	//한 row씩 html에 추가 
 	for(var i = 0; i< cnt ; i++){
 		addRow(JsonRes[i].Hostname, JsonRes[i].IP,JsonRes[i].Port,
 		JsonRes[i].command,JsonRes[i].TACAC_ID,JsonRes[i].TACAC_PW);
-	}	
+	}
 }
 
-
+//HTML에 로우 추가하는 함수
 function addRow(v_host, v_ip, v_port, v_command, v_t_id, v_t_pw){
 	const table = document.getElementById('equipments');
 	
