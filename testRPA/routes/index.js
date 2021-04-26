@@ -19,6 +19,7 @@ router.get('/main', function(req,res){
 	res.render('main.ejs');
 });
 
+
 //모듈에 등록해야 web.js에서 app.use 함수를 통해서 사용 가능
 module.exports = router;
 
