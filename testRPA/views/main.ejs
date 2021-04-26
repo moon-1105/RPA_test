@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="#>
 <meta charset="utf-8">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
-<script type = "text/javascript" src = "JS/readExcel.js" charset= "EUC-KR"></script>
-<script type = "text/javascript" src = "JS/mainJS.js" charset= "EUC-KR"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type = "text/javascript" src = "/static/readExcel.js" charset= "EUC-KR"></script>
+
 <title>장비 관리 자동화</title>
 </head>
 <body>
 <h3>파일 업로드</h3>
 <input type="file" id="inputExcel" onchange ="excelHandl(event)"/> 
-<input type="button" onClick = "testprint()" value = "??"/>
+<input type="button" value = "테스트버튼"/>
 <br>
 <br>
 <table id ="equipments" border = "1" style = '"border-collapse": "collapse"'>
    <thead>
 	   <tr> 
-	     <th>hostname</th><th>IP</th><th>PORT</th><th>��ɾ�</th><th>TACAC ID</th><th>TACAC PW</th> 
+	     <th>hostname</th><th>IP</th><th>PORT</th><th>command</th><th>TACAC ID</th><th>TACAC PW</th> 
 	   </tr>
    </thead>
    <tbody> <!-- 내용이 js로 추가되는 부분 -->  </tbody>
 </table>
+
+<div id="data-container"></div>
+
 </body>
 </html>

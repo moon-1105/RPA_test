@@ -5,6 +5,7 @@
 var express = require('express');
 var router = express.Router();
 
+/** 예시 
 //라우터의 get()함수를 이용해 request URL('/')에 대한 업무처리 로직 정의
 // 라우터 맵핑시 클라이언트 요청 url + 프로토콜 메소드 (get, post, put, delete) 등이 가능.
 router.get('/', function(req, res, next) {
@@ -12,10 +13,10 @@ router.get('/', function(req, res, next) {
     res.send('index page');
 });
 
+**/
 
-var test = require('./main')
 router.get('/main', function(req,res){
-	test.list(req, res);
+	res.render('main.ejs');
 });
 
 //모듈에 등록해야 web.js에서 app.use 함수를 통해서 사용 가능

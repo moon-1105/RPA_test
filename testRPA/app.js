@@ -18,9 +18,11 @@ http.createServer(app).listen(app.get('port'), function(){
 //라우팅 모듈 선언
 var indexRouter = require('./routes/index');
 
-//request 요청 URL과 처리 로직을 선언한 라우팅 모듈 매핑
-app.use('/', indexRouter);
-
 //html 템플릿 엔진 ejs 설정
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
+//request 요청 URL과 처리 로직을 선언한 라우팅 모듈 매핑
+app.use('/', indexRouter);
+app.use('/static', express.static('public'));
+

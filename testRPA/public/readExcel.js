@@ -1,7 +1,4 @@
 /**
- * http://usejsdoc.org/
- */
-/**
  * 엑셀파일을 읽어서 화면에 띄운다. 
  */
 var result = "";
@@ -29,19 +26,21 @@ function makeJson(sheet){
 	//앞서 엑셀을 읽은 후 json 변환 하여
 	JsonRes = XLSX.utils.sheet_to_json(sheet);
 	//console.log( JSON.stringify(XLSX.utils.sheet_to_json (sheet)) );
-	console.log(JsonRes);
 	console.log(Object.keys(JsonRes).length);
 	var cnt = Object.keys(JsonRes).length ;
-	console.log(JsonRes[0]);
 	//한 row씩 html에 추가 
 	for(var i = 0; i< cnt ; i++){
-		addRow(JsonRes[i].Hostname, JsonRes[i].IP,JsonRes[i].Port,
-		JsonRes[i].command,JsonRes[i].TACAC_ID,JsonRes[i].TACAC_PW);
+		addRow(JsonRes[i].Hostname, JsonRes[i].IP,JsonRes[i].Port,JsonRes[i].command,JsonRes[i].TACAC_ID,JsonRes[i].TACAC_PW);
 	}
+	console.log(JsonRes);
+	const container = document.getElementById('data-container');
+	container.value = JsonRes;
+	//console.log(document.getElementById('data-container').value);
 }
 
 //HTML에 로우 추가하는 함수
 function addRow(v_host, v_ip, v_port, v_command, v_t_id, v_t_pw){
+	//console.log(v_host, v_ip, v_port, v_command, v_t_id, v_t_pw);
 	const table = document.getElementById('equipments');
 	
 	const newRow = table.insertRow();
@@ -53,7 +52,7 @@ function addRow(v_host, v_ip, v_port, v_command, v_t_id, v_t_pw){
 	const t_id = newRow.insertCell(4);
 	const t_pw = newRow.insertCell(5);
 	
-	hostname.innerText = JSON.stringify(v_host);
+	hostname.innerText = v_host;
 	ip.innerText= v_ip;
 	port.innerText= v_port;
 	command.innerText= v_command;
