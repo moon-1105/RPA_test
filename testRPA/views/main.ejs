@@ -12,7 +12,13 @@
 <body>
 <h3>파일 업로드</h3>
 <input type="file" id="inputExcel" onchange ="excelHandl(event)"/> 
-<input type="button" value = "테스트버튼"/>
+<input type="button" id="testBtn" value = "테스트버튼"/>
+<script>
+  $("testBtn").click( function(){
+     console.log("hi");
+  });
+
+</script>
 <br>
 <br>
 <table id ="equipments" border = "1" style = '"border-collapse": "collapse"'>
