@@ -12,10 +12,33 @@
 <body>
 <h3>파일 업로드</h3>
 <input type="file" id="inputExcel" onchange ="excelHandl(event)"/> 
-<input type="button" id="testBtn" value = "테스트버튼"/>
+<input type="submit" id="testBtn" value = "테스트버튼"/>
 <script>
-  $("testBtn").click( function(){
-     console.log("hi");
+  $("#testBtn").click( function(){
+     console.log("데이터 전송");
+     console.log($('#dataContainer').val())
+     if ($('#dataContainer').val() != ""){
+     	console.log("엑셀데이터 조회 성공 ");
+        $.ajax({
+          url: '/toLambda',
+          asysnc : true,
+          type: 'POST',
+          contentType: 'amount=12&otherprop=xxx',
+          data: {
+            "testData": $('#dataContainer').val()
+          },
+          dataType: 'json',
+          success: function(data){
+             console.log("전송선공");
+          },
+          error: function(err){
+          	console.log("전송실패   : "+err);
+          }
+         });
+  
+     }else{
+     	alert("데이터가 없습니다");
+     }
   });
 
 </script>
@@ -30,7 +53,7 @@
    <tbody> <!-- 내용이 js로 추가되는 부분 -->  </tbody>
 </table>
 
-<div id="data-container"></div>
+<div id="dataContainer"></div>
 
 </body>
 </html>

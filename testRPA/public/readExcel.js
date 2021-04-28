@@ -33,7 +33,7 @@ function makeJson(sheet){
 		addRow(JsonRes[i].Hostname, JsonRes[i].IP,JsonRes[i].Port,JsonRes[i].command,JsonRes[i].TACAC_ID,JsonRes[i].TACAC_PW);
 	}
 	console.log(JsonRes);
-	const container = document.getElementById('data-container');
+	const container = document.getElementById('dataContainer');
 	container.value = JsonRes;
 	//console.log(document.getElementById('data-container').value);
 }
