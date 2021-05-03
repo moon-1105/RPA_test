@@ -15,24 +15,24 @@
 <input type="submit" id="testBtn" value = "테스트버튼"/>
 <script>
   $("#testBtn").click( function(){
-     console.log("데이터 전송");
-     console.log($('#dataContainer').val())
+
      if ($('#dataContainer').val() != ""){
-     	console.log("엑셀데이터 조회 성공 ");
+     
+        var testData = $('#dataContainer').val();
+         
         $.ajax({
           url: '/toLambda',
-          asysnc : true,
           type: 'POST',
-          contentType: 'amount=12&otherprop=xxx',
-          data: {
-            "testData": $('#dataContainer').val()
-          },
           dataType: 'json',
-          success: function(data){
-             console.log("전송선공");
+          contentType: 'application/json',
+          data: testData,
+          success: function(res){
+             console.log(res);
+             $('#resultSentence').innerText = res;
           },
           error: function(err){
           	console.log("전송실패   : "+err);
+          	$('#resultSentence').innerText = err;
           }
          });
   
@@ -54,6 +54,7 @@
 </table>
 
 <div id="dataContainer"></div>
+<div id="resultSentence"></div>
 
 </body>
 </html>

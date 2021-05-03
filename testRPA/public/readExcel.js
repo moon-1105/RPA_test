@@ -26,6 +26,7 @@ function makeJson(sheet){
 	//앞서 엑셀을 읽은 후 json 변환 하여
 	JsonRes = XLSX.utils.sheet_to_json(sheet);
 	//console.log( JSON.stringify(XLSX.utils.sheet_to_json (sheet)) );
+	console.log("Excel 파일 JSON 변환 => ");
 	console.log(Object.keys(JsonRes).length);
 	var cnt = Object.keys(JsonRes).length ;
 	//한 row씩 html에 추가 
@@ -33,9 +34,9 @@ function makeJson(sheet){
 		addRow(JsonRes[i].Hostname, JsonRes[i].IP,JsonRes[i].Port,JsonRes[i].command,JsonRes[i].TACAC_ID,JsonRes[i].TACAC_PW);
 	}
 	console.log(JsonRes);
+	console.log("======================")
 	const container = document.getElementById('dataContainer');
-	container.value = JsonRes;
-	//console.log(document.getElementById('data-container').value);
+	container.value = JSON.stringify(JsonRes);
 }
 
 //HTML에 로우 추가하는 함수

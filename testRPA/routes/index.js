@@ -15,24 +15,27 @@ router.get('/index', function(req,res){
 });
 
 const bodyParser = require('body-parser');  // body-parser 요청
-app.use(bodyParser.urlencoded({extended: true}));  // URL 인코딩 안함 
-app.use(bodyParser.json());  // json 타입으로 파싱하게 설정
-//app.use(express.json());
-//app.use(express.urlencoded({extended : false}));
+var jsonParser = bodyParser.json();
 
-router.post('/toLambda', function(req,res){
-	console.log(req.body);
-	console.log(res.body);
-	console.log("hi!");
-	//console.log(JSON.parse(req.body));      // body에 있는 정보를 콘솔창에 출력.
-    res.json({ok:true});        // 클라이언트에 성공했다고 신호를 보냄.
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended:true}))
+
+router.post('/toLambda',jsonParser, function(req,res){
+	console.log("START printing DATA ===========================");
+	console.log(req.body); // body에 있는 정보를 콘솔창에 출력.
+	var data = req.body;
+	console.log("END printing DATA ===========================");      
+    
+	if(req.body == '{}' || req.body =='undefined'){
+		res.send('데이터 전송에 실패했습니다');
+	}else{
+		res.send('데이터 전송에 성공했습니다');
+	}
     
 	// 외부 API 연결 => 람다 트리거 동작 => 실제 서버 접근 / 필요한거 => 데이터 결과값
 	// 람다에서 결과값을 받기! 
 	// 결과값 가져옴 
 	// => 정리해서 웹페이지에 붙임 !! =>
-    //res.render('index.ejs', result);
-    res.sender("success!!!");
 });
 
 //모듈에 등록해야 app.js에서 app.use 함수를 통해서 사용 가능
