@@ -1,7 +1,6 @@
 /**
  * index.js 라우팅 파일 
  */
-
 var express = require('express');
 var router = express.Router();
 const ejs = require("ejs");
@@ -20,11 +19,13 @@ var jsonParser = bodyParser.json();
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}))
 
-router.post('/toLambda',jsonParser, function(req,res){
+router.post('/getData',jsonParser, function(req,res){
 	console.log("START printing DATA ===========================");
 	console.log(req.body); // body에 있는 정보를 콘솔창에 출력.
 	var data = req.body;
-	console.log("END printing DATA ===========================");      
+	console.log("END printing DATA ===========================");
+	
+	/// 다시 web으로 리턴할 부분       
     
 	if(req.body == '{}' || req.body =='undefined'){
 		res.send('데이터 전송에 실패했습니다');
@@ -37,6 +38,23 @@ router.post('/toLambda',jsonParser, function(req,res){
 	// 결과값 가져옴 
 	// => 정리해서 웹페이지에 붙임 !! =>
 });
+
+router.post('/toLambda',jsonParser, function(req,res){
+	console.log("START invoke LAMBDA ===========================");
+	
+	// 외부 API 연결 => 람다 트리거 동작 => 실제 서버 접근 / 필요한거 => 데이터 결과값
+	// 람다에서 결과값을 받기! 
+	// 결과값 가져옴 
+	// => 정리해서 웹페이지에 붙임 !! =>
+	const CONNECT = require('https')
+	let url = "https://10.182.254.77/default/hello-world-python"
+	  
+	exports.handler =  async function(event, context) {
+    	console.log("EVENT: \n" + JSON.stringify(event, null, 2))
+    	return context.logStreamName
+  	}	
+});
+
 
 //모듈에 등록해야 app.js에서 app.use 함수를 통해서 사용 가능
 module.exports = router;
