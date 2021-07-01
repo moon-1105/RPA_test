@@ -21,7 +21,7 @@
         var testData = $('#dataContainer').val();
          
         $.ajax({
-          url: '/toLambda',
+          url: '/getData',
           type: 'POST',
           dataType: 'json',
           contentType: 'application/json',
@@ -42,6 +42,24 @@
   });
 
 </script>
+
+<input type="button" id="testBtn2" value = "람다테스트" />
+<script>
+$("#testBtn2").click( function(){
+	$.ajax({
+          url: '/toLambda',
+          type: 'POST',
+          contentType: 'application/json',
+          success: function(res){
+             console.log(res);
+          },
+          error: function(err){
+          	console.log("람다실패   : "+err);
+          }
+         });
+  });
+</script>
+
 <br>
 <br>
 <table id ="equipments" border = "1" style = '"border-collapse": "collapse"'>
