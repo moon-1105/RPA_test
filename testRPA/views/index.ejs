@@ -3,6 +3,19 @@
 <head>
 <link rel="shortcut icon" href="#>
 <meta charset="utf-8">
+<!--
+<script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+<script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+<script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+<script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+<script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+<script type="text/javascript" src="lib/url-template/url-template.js"></script>
+<script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+<script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+<script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+<script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+<script type="text/javascript" src="apigClient.js"></script>
+-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type = "text/javascript" src = "/static/readExcel.js" charset= "EUC-KR"></script>
@@ -43,7 +56,7 @@
 
 </script>
 
-<input type="button" id="testBtn2" value = "람다테스트" />
+<input type="submit" id="testBtn2" value = "테스트"/>
 <script>
 $("#testBtn2").click( function(){
 	$.ajax({
